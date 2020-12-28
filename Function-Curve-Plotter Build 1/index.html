@@ -8,20 +8,26 @@
     <link href="style.css" rel="stylesheet" type="text/css" />
 
     <style>
-
-/*
-      #line,#parabola,#sine {
-        display: none;
+      #canvas{
+        margin:auto;
       }
-*/
+      .parameters{
+        font-size: 20px;
+
+      }
       .navButtons {
         background-color:red;
         color:white;
+        font-size: 20px;
+        vertical-align: middle;
+        margin: 0 auto;
+        margin: auto;
       }
 
       .buttons {
       	margin-top:520px;
       	font-family:"Lucida Console",Monaco,monospace;
+
       }
       #upButton , #downButton{
       	display: block;
@@ -30,6 +36,9 @@
       	padding:0px 7px;
       	cursor:pointer;
       	text-align: center;
+      }
+      #upButton , #downButton, #center{
+        width:35px;
       }
       #center{
       	display: block;
@@ -40,53 +49,75 @@
       	border:none;
       	text-align:center;
       }
-
-
-
-
+      #control{;
+        position: relative;
+      }
+      #control_table{
+        position: absolute;
+        left:50%;
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+      }
+      .control{
+        width: 250px;
+        font-size: 20px;
+      }
     </style>
   </head>
   <body>
-    <h1>Graph Plotter</h1>
+    <h1 style="color: blue; text-align: center; font-size: 250%">Graph Plotter</h1>
 <!Buttons>
-    <button type="button" onclick="plotSine(y_camera,x_camera),setSin()">Plot Sine Wave</button>
-    <button type="button" onclick="plotParabola(y_camera,x_camera),setParabola()">Plot Parabola</button>
-    <button type="button" onclick="plotLine(y_camera,x_camera),setLine()">Plot Line</button>
+<div id="control">
+  <table id="control_table">
+    <tr>
+      <td>
+        <button class="control" type="button" onclick="plotSine(y_camera,x_camera),setSin()">Plot Sine Wave</button>
+      </td>
+      <td>
+        <button class="control" type="button" onclick="plotParabola(y_camera,x_camera),setParabola()">Plot Parabola</button>
+      </td>
+      <td>
+        <button class="control" type="button" onclick="plotLine(y_camera,x_camera),setLine()">Plot Line</button>
+      </td>
+    </tr>
+  </table>
+</div>
+<br>
 <!sine paramenters>
-    <div id="sine" style="display: none">
+    <div id="sine" class="parameters" style="display: none">
       <table>
         <tr>
           <td>
             <p>Amplitude</p>
           </td>
           <td>
-            <input type="text" id="sin_amp"></input>
+            <input type="text" class="parameters" id="sin_amp"></input>
           </td>
           <td>
             <p>Frequency</p>
           </td>
           <td>
-            <input type="text" id="sin_freq"></input>
+            <input type="text" class='parameters' id="sin_freq"></input>
           </td>
           <td>
             <p>X-shift</p>
           </td>
           <td>
-            <input type="text" id="sin_xShift"></input>
+            <input type="text" class="parameters" id="sin_xShift"></input>
           </td>
           <td>
             <p>Y-shift</p>
           </td>
           <td>
-            <input type="text" id="sin_yShift"></input>
+            <input type="text" class="parameters" id="sin_yShift"></input>
           </td>
           <td>
-            <button type="button" onclick="plotSine(y_camera,x_camera),setSin()">Update</button>
+            <button type="button" class='parameters' onclick="plotSine(y_camera,x_camera),setSin()">Update</button>
         </tr>
       </table>
     </div>
 <!Line parameters>
-    <div id="line" style="display: none">
+    <div id="line" class="parameters" style="display: none">
       <table>
         <tr>
           <td>
@@ -108,7 +139,7 @@
       </table>
     </div>
 <!Parabola parameters>
-    <div id="parabola" style="display: none">
+    <div id="parabola" class="parameters" style="display: none">
       <table>
         <tr>
           <td>
@@ -136,16 +167,15 @@
       </table>
     </div>
 <!canvas>
-	<div style="position: relative;">
-    <canvas id="layer1" width="500" height="500" style="border:1px solid #c3c3c3; position: absolute; left: 0; top: 0; z-index: 0;">Your browser does not support the canvas element.</canvas>
-    <canvas id="layer2" width="500" height="500" style="border:1px solid #c3c3c3; position: absolute; left: 0; top: 0; z-index: 1;">Your browser does not support the canvas element.</canvas>
-    <canvas id="layer3" width="500" height="500" style="border:1px solid #c3c3c3; position: absolute; left: 0; top: 0; z-index: 2;">Your browser does not support the canvas element.</canvas>
+	<div id="canvas" style="position: relative;">
+    <canvas id="layer1" width="750" height="750" style="border:1px solid #c3c3c3; position: absolute; left:50%; transform:translate(-50%,0); z-index: 0;">Your browser does not support the canvas element.</canvas>
+    <canvas id="layer2" width="750" height="750" style="border:1px solid #c3c3c3; position: absolute; left:50%; transform:translate(-50%,0); z-index: 1;">Your browser does not support the canvas element.</canvas>
+    <canvas id="layer3" width="750" height="750" style="border:1px solid #c3c3c3; position: absolute; left:50%; transform:translate(-50%,0); z-index: 2;">Your browser does not support the canvas element.</canvas>
 	</div>
+  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
-  <table>
-
-    <div class ="buttons">
-
+  <div class ="buttons" style="position: relative">
+  <table id="navTable" style="position: absolute; left:50%; transform:translate(-50%,0);">
       <tr>
         <td>
         </td>
@@ -153,7 +183,6 @@
         <button type="button" onclick="moveUp()" id="upButton" class="navButtons"> &uarr; </button>
         </td>
 		<td>
-
 		</td>
       </tr>
       <tr>
@@ -168,15 +197,13 @@
       </tr>
       <tr>
         <td>
-
         </td>
         <td>
           <button type="button" onclick="moveDown()" id="downButton" class="navButtons"> &darr; </button>
         </td>
-
       </tr>
-     </div>
     </table>
+</div>
     <br>
 
     <script>
@@ -191,7 +218,7 @@
       var l3 = layer3.getContext("2d");
       var y_camera = 0;
       var x_camera = 0;
-      var scale = 40;
+      var scale = 40*1.5;
 	    var wCurve = 'line';
       document.getElementById('c').value = 1;
       document.getElementById('sin_amp').value = 1;
@@ -232,8 +259,8 @@
 
       function clearScreen() {
 
-        l2.clearRect(0, 0, 500, 500);
-        l3.clearRect(0, 0, 500, 500);
+        l2.clearRect(0, 0, 750, 750);
+        l3.clearRect(0, 0, 750, 750);
         console.log('clear');
 
       }
@@ -250,7 +277,7 @@
         showBoxesParabola();
       }
       function clearGrid(){
-      	l1.clearRect(0,0,500,500);
+      	l1.clearRect(0,0,750,750);
       	console.log('clear Grid');
       }
 	  function resetPos(){
@@ -381,8 +408,8 @@
         l2.lineWidth = 3;
         l2.strokeStyle = "#0000A0";
         l2.beginPath();
-        l2.moveTo(0,240 + offset_y);
-        l2.lineTo(500,240 + offset_y);
+        l2.moveTo(0,240*1.5 + offset_y);
+        l2.lineTo(750,240*1.5 + offset_y);
         l2.stroke();
         /*while (i < 500){
           ctx.fillStyle = "blue";
@@ -393,8 +420,8 @@
         //y-axis
 
         l2.beginPath();
-        l2.moveTo(240 + offset_x,0);
-        l2.lineTo(240 + offset_x,500);
+        l2.moveTo(240 * 1.5 + offset_x,0);
+        l2.lineTo(240 * 1.5 + offset_x,750);
         l2.stroke();
         /*
         while (i < 500){
@@ -407,14 +434,14 @@
 
         //x axis numbering
         var i = 0 - offset_x;
-        var x_value = -240/scale - offset_x/scale;
-        while (i < 500 + Math.abs(offset_x)){
+        var x_value = -240*1.5/scale - offset_x/scale;
+        while (i < 750 + Math.abs(offset_x)){
 
 
           if(i % scale == 0){
 
-            l2.font = "15px Arial";
-            l2.fillText( (x_value).toString() , i + offset_x, offset_y + 260);
+            l2.font = "22.5px Arial";
+            l2.fillText( (x_value).toString() , i + offset_x, offset_y + 260 * 1.5);
             x_value++;
 
           }
@@ -424,12 +451,12 @@
 
         //y axis numbering
         var iy = 0 - offset_y;
-        var y_value = 240/scale + offset_y/scale;
-        while (iy < 500 + Math.abs(offset_y)){
+        var y_value = 240 * 1.5/scale + offset_y/scale;
+        while (iy < 750 + Math.abs(offset_y)){
 
           if(iy % scale == 0){
-            l2.font = "15px Arial";
-            l2.fillText( (y_value).toString() , offset_x + 225, offset_y + iy - 2.5);
+            l2.font = "22.5px Arial";
+            l2.fillText( (y_value).toString() , offset_x + 225 * 1.5, offset_y + iy - 2.5*1.5);
             y_value--;
           }
           iy++;
@@ -441,44 +468,44 @@
       }
       */
       function plotSine(offset_y,offset_x) {
-      	l3.clearRect(0,0,500,500);
+      	l3.clearRect(0,0,750,750);
         console.log("draw graph");
         var x, y, xcoord, ycoord, k_one,k_two,slope;
-        x = -500 - Math.abs(offset_x);
+        x = -750 - Math.abs(offset_x);
         y = 0;
         xcoord = 0;
         ycoord = 0;
 
         k_one = document.getElementById("sin_xShift").value*scale;
         k_two = document.getElementById("sin_yShift").value*scale;
-        amp = document.getElementById("sin_amp").value*1600;
-        freq = document.getElementById("sin_freq").value*1/40;//you are here
+        amp = document.getElementById("sin_amp").value*Math.pow(scale,2);
+        freq = document.getElementById("sin_freq").value*1/scale;//you are here
         //ctx.fillStyle="red";
         //ctx.fillRect(0,0,250,250);
 
 
-        while (x < 500 + Math.abs(offset_x)) {
+        while (x < 750 + Math.abs(offset_x)) {
 
           console.log('plotting mini lines');
-          xcoord = (x + 240 + offset_x);
-          ycoord = (-1*(amp*Math.sin(freq*(x-k_one))/scale + k_two) + 240 + offset_y);
+          xcoord = (x + 240*1.5 + offset_x);
+          ycoord = (-1*(amp*Math.sin(freq*(x-k_one))/scale + k_two) + 240*1.5 + offset_y);
           //get slope
           //slope = (parabola(x+0.01) - parabola(x))/0.01;
           l3.lineWidth = 2;
           l3.strokeStyle = "blue";
           l3.beginPath();
           l3.moveTo(xcoord,ycoord);
-          l3.lineTo((x + 0.25 + 240 + offset_x),-1*((amp*Math.sin((x +0.25 - k_one)*freq))/scale + k_two) + 240 + offset_y);
+          l3.lineTo((x + 0.25 + 240*1.5 + offset_x),-1*((amp*Math.sin((x +0.25 - k_one)*freq))/scale + k_two) + 240*1.5 + offset_y);
           l3.stroke();
           x+=0.25;
         }
 
       }
 	function plotLine(offset_y,offset_x) {
-		l3.clearRect(0,0,500,500);
+		l3.clearRect(0,0,750,750);
         console.log("draw graph");
         var x, y, xcoord, ycoord, k_one,k_two,slope;
-        x = -500 - Math.abs(offset_x);
+        x = -750 - Math.abs(offset_x);
         y = 0;
         xcoord = 0;
         ycoord = 0;
@@ -494,18 +521,18 @@
 
         slope = document.getElementById('slope').value;
 
-        while (x < 500 + Math.abs(offset_x)) {
+        while (x < 750 + Math.abs(offset_x)) {
 
           console.log('plotting mini lines');
-          xcoord = (x + 240 + offset_x);
-          ycoord = -slope*(x) + 240 + offset_y + k_one;
+          xcoord = (x + 240*1.5 + offset_x);
+          ycoord = -slope*(x) + 240*1.5 + offset_y + k_one;
           //get slope
           //slope = (parabola(x+0.01) - parabola(x))/0.01;
           l3.lineWidth = 2;
           l3.strokeStyle = "blue";
           l3.beginPath();
           l3.moveTo(xcoord,ycoord);
-          l3.lineTo((x + 0.25 + 240 + offset_x),-slope*(x+0.25) + 240 + offset_y + k_one);
+          l3.lineTo((x + 0.25 + 240*1.5 + offset_x),-slope*(x+0.25) + 240*1.5 + offset_y + k_one);
           l3.stroke();
           x+=0.25;
         }
@@ -517,24 +544,24 @@
         l1.lineWidth = 1;
         l1.strokeStyle = "#00FFFF";
         var times_plotted_x = 0;
-        while (times_plotted_x < 500){
+        while (times_plotted_x < 750){
           if (times_plotted_x % scale == 0){
 
 
             l1.moveTo(0 , times_plotted_x);
-            l1.lineTo(500, times_plotted_x);
+            l1.lineTo(750, times_plotted_x);
             l1.stroke();
           }
           times_plotted_x++;
         }
         var times_plotted_y = 0;
 
-        while (times_plotted_y < 500){
+        while (times_plotted_y < 750){
           if (times_plotted_y % scale == 0){
 
 
             l1.moveTo(times_plotted_y, 0);
-            l1.lineTo(times_plotted_y, 500);
+            l1.lineTo(times_plotted_y, 750);
             l1.stroke()
           }
           times_plotted_y++;
@@ -546,10 +573,10 @@
     parameter = new_parameter;
   }
 	function plotParabola(offset_y,offset_x) {
-		l3.clearRect(0,0,500,500);
+		l3.clearRect(0,0,750,750);
         console.log("draw graph");
         var x, y, xcoord, ycoord, k_one,k_two,slope,c;
-        x = -500 - Math.abs(offset_x);
+        x = -750 - Math.abs(offset_x);
         y = 0;
         xcoord = 0;
         ycoord = 0;
@@ -560,18 +587,18 @@
         //ctx.fillRect(0,0,250,250);
 
 
-        while (x < 500 + Math.abs(offset_x)) {
+        while (x < 750 + Math.abs(offset_x)) {
 
           console.log('plotting mini lines');
-          xcoord = (x + 240 + offset_x);
-          ycoord = (-c*(Math.pow(x-k_two,2)/scale) + 240 + offset_y + k_one);
+          xcoord = (x + 240*1.5 + offset_x);
+          ycoord = (-c*(Math.pow(x-k_two,2)/scale) + 240*1.5 + offset_y + k_one);
           //get slope
           //slope = (parabola(x+0.01) - parabola(x))/0.01;
           l3.lineWidth = 2;
           l3.strokeStyle = "blue";
           l3.beginPath();
           l3.moveTo(xcoord,ycoord);
-          l3.lineTo((x + 0.25 + 240 + offset_x),-c*(Math.pow(x+0.25-k_two,2)/scale) + 240 + offset_y + k_one);
+          l3.lineTo((x + 0.25 + 240*1.5 + offset_x),-c*(Math.pow(x+0.25-k_two,2)/scale) + 240*1.5 + offset_y + k_one);
           l3.stroke();
           x+=0.25;
         }
